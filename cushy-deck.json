@@ -1,0 +1,12 @@
+{
+    "$schema": "../../../src/cards/DeckManifest.schema.json",
+    "name": "SDXL Turbo Experimental",
+    "authorName": "noellealarie",
+    "description": "SDXL Turbo Experimental",
+    "cards": [
+        {
+            "name": "SDXL Turbo",
+            "deckRelativeFilePath": "./sdxl-turbo.ts"
+        }
+    ]
+}

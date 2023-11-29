@@ -16,7 +16,7 @@ app({
             tooltip: 'SDXL Turbo only needs 1 or 2 steps',
             hideSlider: true,
         }),
-        seeds: form.seed({
+        noise_seed: form.seed({
             label: 'Seed',
         }),
         cfg: form.int({
@@ -31,7 +31,7 @@ app({
         const graph = flow.nodes
         let { model, vae, clip } = run_ckpt_vae_clip(flow, p.checkpoint_name)
 
-        const { prompt, steps, seeds, cfg, sampler_name } = p
+        const { prompt, steps, noise_seed, cfg, sampler_name } = p
 
         const sigmas = graph.SDTurboScheduler({ model, steps })
         const sampler = graph.KSamplerSelect({ sampler_name })
@@ -46,11 +46,12 @@ app({
 
         const ksampler = graph.SamplerCustom({
             model,
-            latent_image,
             positive: positive.conditionning,
             negative,
             sampler,
             sigmas,
+            latent_image,
+            noise_seed,
             cfg,
         })
 
@@ -58,5 +59,7 @@ app({
             filename_prefix: 'sdxl-turbo',
             images: graph.VAEDecode({ vae, samples: ksampler.outputs.output }),
         })
+
+        await flow.PROMPT()
     },
 })

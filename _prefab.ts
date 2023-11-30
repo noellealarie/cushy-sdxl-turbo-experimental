@@ -6,7 +6,7 @@ export const ui_checkpoint = (form: FormBuilder) =>
     form.enum({
         label: 'Checkpoint',
         enumName: 'Enum_CheckpointLoaderSimple_ckpt_name',
-        tooltip: 'Use sd_xl_turbo_1.0 or sd_xl_turbo_1.0_fp16',
+        tooltip: 'Use a SDXL Turbo model',
     })
 
 export const ui_sampler = (form: FormBuilder) =>

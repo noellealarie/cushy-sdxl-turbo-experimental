@@ -1,4 +1,3 @@
-import { findParentPreDOMNode } from 'lexical/nodes/LexicalTextNode'
 import { ui_checkpoint, ui_sampler, run_ckpt_vae_clip, run_prompt } from './_prefab'
 
 app({
@@ -13,17 +12,17 @@ app({
             default: 1,
             label: 'Steps',
             min: 0,
-            tooltip: 'SDXL Turbo only needs 1 or 2 steps',
+            tooltip: 'Works better with few steps',
             hideSlider: true,
         }),
         noise_seed: form.seed({
             label: 'Seed',
         }),
-        cfg: form.int({
+        cfg: form.float({
             default: 1,
             label: 'CFG',
             min: 0,
-            tooltip: 'Should be 1',
+            tooltip: 'Works better with low CFG values',
             hideSlider: true,
         }),
     }),
